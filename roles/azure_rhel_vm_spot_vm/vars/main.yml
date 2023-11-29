@@ -7,11 +7,11 @@ ansible_python_interpreter: /usr/bin/python3
 
 # Rhel VM
 rhel_vm_state: present
-azurerm_resource_group_name: "terraform-testing-rg"
+azurerm_resource_group_name: "rg-intel-29112023"
 azurerm_virtual_network_name: "vnet1"
-virtual_network_resource_group_name: "terraform-testing-rg"
+virtual_network_resource_group_name: "rg-intel-29112023"
 azurerm_subnet_name: "default"
-admin_password: var.admin_password
+admin_password: "Password@123"
 source_image_reference_offer: "RHEL"
 source_image_reference_sku: "8-LVM-gen2"
 source_image_reference_publisher: "RedHat"
