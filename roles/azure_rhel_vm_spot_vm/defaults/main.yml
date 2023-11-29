@@ -1,2 +1,3 @@
 ---
 # defaults file for azure_rhel_vm_spot_vm
+azure_vm_tf_source: https://github.com/intel/terraform-intel-azure-linux-vm.git

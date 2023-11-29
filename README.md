@@ -82,7 +82,7 @@ For this module, There are 4 playbooks, Where
 │   │   ├── README.md
 │   │   ├── tasks
 │   │   │   ├── download_tf_module.yml
-│   │   │   ├── ec2.yml
+│   │   │   ├── rhel_vm.yml
 │   │   │   ├── keypair.yml
 │   │   │   ├── main.yml
 │   │   │   ├── output.yml
