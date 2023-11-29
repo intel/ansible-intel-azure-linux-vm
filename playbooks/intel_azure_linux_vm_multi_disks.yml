@@ -1,0 +1,9 @@
+---
+- name: Run azure_linux_vm_multi_disks role
+  hosts: localhost
+  tasks:
+    - name: Running a role Azure linux vm multi disks
+      ansible.builtin.import_role:
+        name: azure_linux_vm_multi_disks
+      vars:
+        vm_state: present
