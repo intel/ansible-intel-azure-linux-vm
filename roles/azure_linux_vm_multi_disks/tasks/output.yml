@@ -1,0 +1,22 @@
+---
+- set_fact:
+    vm_instance : '{{ rhel_vm_output.outputs }}'
+  when: rhel_vm_output.outputs | length > 0
+
+- name: Validating rhel_vm_output output
+  fail:
+    msg: "rhel_vm_output instance got an error"
+  when: rhel_vm_output.outputs | length == 0
+
+- name: Displaying rhel vm output
+  ansible.builtin.debug:
+    msg:
+    - "size: {{ rhel_vm_instance.size.value }}"
+    - "location: {{ rhel_vm_instance.location.value }}"
+    - "name: {{ rhel_vm_instance.name.value }}"
+    - "admin_username: {{ rhel_vm_instance.admin_username.value }}"
+    - "network_interface_ids: {{ rhel_vm_instance.network_interface_ids.value }}"
+    - "os_disk: {{ rhel_vm_instance.os_disk.value }}"
+    - "tags: {{ rhel_vm_instance.tags.value }}"
+    - "resource_group_name: {{ rhel_vm_instance.resource_group_name.value }}"
+    - "virtual_machine_id: {{ rhel_vm_instance.virtual_machine_id.value }}"

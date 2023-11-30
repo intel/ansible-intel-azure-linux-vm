@@ -1,2 +1,3 @@
 ---
-# defaults file for azure_linux_vm_multi_disks
+# defaults file for azure_rhel_vm_multi_disks
+azure_vm_tf_source: https://github.com/intel/terraform-intel-azure-linux-vm.git
