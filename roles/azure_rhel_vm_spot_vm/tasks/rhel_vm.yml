@@ -1,5 +1,5 @@
 ---
-- name: Rhel VM creation
+- name: Azure Rhel VM creation
   community.general.terraform:
     project_path: '{{ azure_vm_tf_module_download_path }}'
     state: '{{ rhel_vm_state }}'
