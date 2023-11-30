@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - azure_linux_vm_multi_disks
+    - azure_rhel_vm_multi_disks
