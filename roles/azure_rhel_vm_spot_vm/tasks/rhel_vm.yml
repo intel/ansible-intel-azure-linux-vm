@@ -18,7 +18,7 @@
       priority: '{{ priority }}'
       max_bid_price: '{{ max_bid_price }}'
       eviction_policy: '{{ eviction_policy }}'
-      tags: '{{ tags }}'
+      tags: '{{ vm_tags }}'
   register: rhel_vm_output
   
 - debug:
