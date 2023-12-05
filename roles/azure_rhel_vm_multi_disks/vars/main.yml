@@ -11,9 +11,7 @@ storage_account_type: "Standard_LRS"
 location: "eastus"
 create_option: "empty"
 disk_size_gb: "8"
-tags:
-  owner: user@company.com
-  duration: 1
+disk_tags: { "owner": "user@company.com", "duration": "1"}
 lun: 10  
 caching: "read_write"
 vm_name:  TestVM
@@ -29,7 +27,7 @@ source_image_reference_offer: "RHEL"
 source_image_reference_sku: "8-LVM-gen2"
 source_image_reference_publisher: "RedHat"
 source_image_reference_version: "latest"
-tags:
+vm_tags:
   owner: user@company.com
   duration: 1
 virtual_machine_size: "Standard_D2s_v5"

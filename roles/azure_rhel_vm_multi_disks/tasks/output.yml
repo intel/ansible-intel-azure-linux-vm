@@ -1,6 +1,6 @@
 ---
 - set_fact:
-    vm_instance : '{{ rhel_vm_output.outputs }}'
+    rhel_vm_instance: '{{ rhel_vm_output.outputs }}'
   when: rhel_vm_output.outputs | length > 0
 
 - name: Validating rhel_vm_output output

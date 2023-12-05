@@ -1,6 +1,6 @@
 - name: Create Azure managed disk
   azure.azcollection.azure_rm_multiplemanageddisks:
-    tags: '{{ tags }}'
+    tags: '{{ disk_tags }}'
     state: '{{ rhel_vm_state }}'
     managed_disks:
       - name: '{{ disk_name }}'

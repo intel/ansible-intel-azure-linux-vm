@@ -15,7 +15,7 @@
       source_image_reference_sku: '{{ source_image_reference_sku }}'
       source_image_reference_publisher: '{{ source_image_reference_publisher }}'
       source_image_reference_version: '{{ source_image_reference_version }}'
-      tags: '{{ tags }}'
+      tags: '{{ vm_tags }}'
       virtual_machine_size: '{{ virtual_machine_size }}'
   register: rhel_vm_output
 - debug:
