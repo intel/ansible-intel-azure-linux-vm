@@ -7,20 +7,21 @@ ansible_python_interpreter: /usr/bin/python3
 #manageddisk.yml
 disk_name: "managed_disk_name"
 resource_group_name: "rg-intel-29112023"
-storage_account_type: "rg-intel-29112023"
-location: "us-east-1"
-create_option: "Empty"
+storage_account_type: "Standard_LRS"
+location: "eastus"
+create_option: "empty"
 disk_size_gb: "8"
 tags:
   owner: user@company.com
   duration: 1
 lun: 10  
 caching: "read_write"
+vm_name:  TestVM
 
 # VM
 rhel_vm_state: present
 azurerm_resource_group_name: "rg-intel-29112023"
-azurerm_virtual_network_name: "vnet01"
+azurerm_virtual_network_name: "vnet1"
 virtual_network_resource_group_name: "rg-intel-29112023"
 azurerm_subnet_name: "default"
 admin_password: "Password@123"
@@ -31,4 +32,4 @@ source_image_reference_version: "latest"
 tags:
   owner: user@company.com
   duration: 1
-
+virtual_machine_size: "Standard_D2s_v5"

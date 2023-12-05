@@ -7,3 +7,4 @@
         name: azure_linux_vm_multi_disks
       vars:
         vm_state: present
+        virtual_machine_size: "Standard_D2s_v3"

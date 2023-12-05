@@ -16,7 +16,11 @@
       source_image_reference_publisher: '{{ source_image_reference_publisher }}'
       source_image_reference_version: '{{ source_image_reference_version }}'
       tags: '{{ tags }}'
-
+      virtual_machine_size: '{{ virtual_machine_size }}'
   register: rhel_vm_output
 - debug:
     var: rhel_vm_output
+- set_fact:
+    vm_name: '{{ rhel_vm_output.outputs.name.value }}'
+  when: rhel_vm_output.outputs | length > 0
+

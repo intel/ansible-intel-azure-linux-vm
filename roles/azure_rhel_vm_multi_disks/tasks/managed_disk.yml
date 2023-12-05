@@ -1,0 +1,20 @@
+- name: Create Azure managed disk
+  azure.azcollection.azure_rm_multiplemanageddisks:
+    tags: '{{ tags }}'
+    state: '{{ rhel_vm_state }}'
+    managed_disks:
+      - name: '{{ disk_name }}'
+        resource_group: '{{ resource_group_name }}'
+        storage_account_type: '{{ storage_account_type }}'
+        location: '{{ location }}'
+        create_option: '{{ create_option }}'
+        disk_size_gb: '{{ disk_size_gb }}'
+        lun: '{{ lun }}'
+        attach_caching: '{{ caching }}'
+    managed_by_extended:
+      - resource_group: '{{ azurerm_resource_group_name }}'
+        name: '{{ vm_name }}'
+  register: managed_disk_output
+- debug:
+    var: managed_disk_output
+
