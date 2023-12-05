@@ -5,6 +5,10 @@
     file: download_tf_module.yml
   when: rhel_vm_state == "present"
 
+- name: Read TF state
+  ansible.builtin.include_tasks:
+    file: read_tfstate.yml 
+
 - name: VM configure
   ansible.builtin.include_tasks:
     file: vm.yml
