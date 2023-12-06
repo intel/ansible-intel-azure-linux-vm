@@ -14,7 +14,7 @@ disk_size_gb: "8"
 disk_tags: { "owner": "user@company.com", "duration": "1"}
 lun: 10  
 caching: "read_write"
-vm_name: TestVM
+
 
 # VM
 rhel_vm_state: present
