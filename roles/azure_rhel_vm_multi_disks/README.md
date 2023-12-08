@@ -14,15 +14,16 @@ As you configure your application's environment, choose the configurations for y
 
 In this example, the virtual machine is using a preconfigured network interface, subnet, and resource group. The tags Name, Owner and Duration are added to the virtual machine when it is created.
 
+## Usage
 
 Requirements
 ------------
-| Name                                                                               | Version    |
-|------------------------------------------------------------------------------------|------------|
-| <a name="requirement_terraform"></a> [Terraform](#requirement\_terraform)          | =1.5.7     |
-| <a name="requirement_azure_cli"></a> [Azure CLI](#requirement\_azure_cli)   | ~> 2.54.0 |
-| <a name="requirement_ansible_core"></a> [Ansible Core](#requirement\_ansible\_core) | ~>2.14.2   |
-| <a name="requirement_ansible"></a> [Ansible](#requirement\_ansible)                | ~>7.2.0-1  |
+| Name                                                                                | Version   |
+|-------------------------------------------------------------------------------------|-----------|
+| <a name="requirement_terraform"></a> [Terraform](#requirement\_terraform)           | =1.5.7    |
+| <a name="requirement_azure_cli"></a> [Azure CLI](#requirement\_azure_cli)           | ~> 2.54.0 |
+| <a name="requirement_ansible_core"></a> [Ansible Core](#requirement\_ansible\_core) | ~>2.14.2  |
+| <a name="requirement_ansible"></a> [Ansible](#requirement\_ansible)                 | ~>7.2.0-1 |
 
 
 Note:
@@ -67,13 +68,11 @@ Use playbook to run azure_rhel_vm_multi_disks as below
 - name: Run azure_rhel_vm_multi_disks role
   hosts: localhost
   tasks:
-    - name: Running a role Azure rhel vm multi disks
+    - name: Running a role Azure linux vm multi disks
       ansible.builtin.import_role:
         name: azure_rhel_vm_multi_disks
       vars:
         rhel_vm_state: present
-        rhel_vm_disk_state: present
-        virtual_machine_size: "Standard_D2s_v3"
 ```
 Use below Command:
 ```commandline
@@ -87,13 +86,11 @@ ansible-playbook intel_azure_rhel_vm_multi_disks.yml
 - name: Run azure_rhel_vm_multi_disks role
   hosts: localhost
   tasks:
-    - name: Running a role Azure rhel vm multi disks
+    - name: Running a role Azure linux vm multi disks
       ansible.builtin.import_role:
         name: azure_rhel_vm_multi_disks
       vars:
         rhel_vm_state: present
-        rhel_vm_disk_state: present
-        virtual_machine_size: "Standard_D2s_v3"
 ```
 Use below Command:
 ```commandline
@@ -106,14 +103,11 @@ ansible-playbook intel_azure_rhel_vm_multi_disks.yml
 - name: Run azure_rhel_vm_multi_disks role
   hosts: localhost
   tasks:
-    - name: Running a role Azure rhel vm multi disks
+    - name: Running a role Azure linux vm multi disks
       ansible.builtin.import_role:
         name: azure_rhel_vm_multi_disks
       vars:
         rhel_vm_state: absent
-        rhel_vm_disk_state: absent
-        virtual_machine_size: "Standard_D2s_v3"
-
 ```
 Use below Command:
 ```commandline
@@ -132,23 +126,35 @@ ansible-playbook intel_azure_rhel_vm_multi_disks.yml
 | Name                                                                         | Description                                                                               | Type     | Default   | Required |
 |------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|----------|-----------|:--------:|
 | <a name="input_rhel_vm_state"></a> [rhel_vm_state](#input\_rhel_vm_state) | It specifices vm state of given stage, choies: "planned", "present" ← (default), "absent" | `string` | `present` |    no    |
-| <a name="input_rhel_vm_state"></a> [rhel_vm_disk_state](#input\_rhel_vm_state) | It specifices vm state of given stage, choies: "planned", "present" ← (default), "absent" | `string` | `present` |    no    |
 
+## Azure Managed Disk Exposed Inputs
+| Name                                                                                                      | Description                                                                                                                                                      | Type    | Default                                           | Required |
+|-----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------------------------|:--------:|
+| <a name="input_disk_name"></a> [disk_name](#input_disk_name)                                              | Name of the managed disk.                                                                                                                                        | `string` | `"managed_disk_name"`                             |    no    |
+| <a name="input_resource_group_name"></a> [resource_group_name](#input_resource_group_name)   | Name of a resource group where the managed disk exists or will be created.                                                                                       | `string` | `rg-intel-<xxxxxx>`                               |    no    |
+| <a name="input_storage_account_type"></a> [storage_account_type](#input_storage_account_type) | Type of storage for the managed disk.                                                                                                                            | `string` | `"Standard_LRS"`                                  |    no    |
+| <a name="input_location"></a> [location](#input_location)                         | Valid Azure location. Defaults to location of the resource group.                                                                                                | `string` | `"eastus"`                                        |    no    |
+| <a name="input_create_option"></a> [create_option](#input_create_option)                                  | import from a VHD file in source_uri and copy from previous managed disk source_uri. Choices: "empty", "import", "copy"                                          | `string` | `"empty"`                                         |    no    |
+| <a name="input_disk_size_gb"></a> [disk_size_gb](#input_disk_size_gb)                                     | Size in GB of the managed disk to be created.                                                                                                                    | `string` | `"8"`                                             |    no    |
+| <a name="input_disk_tags"></a> [disk_tags](#input_disk_tags)                                              | Dictionary of string:string pairs to assign as metadata to the object.                                                                                           | `{}`    | `{ "owner": "user@company.com", "duration": "1"}` |    no    |
+| <a name="input_lun"></a> [lun](#input_lun)                                                                | The logical unit number for data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM. | `string` | `10`                                              |    no    |
+| <a name="input_caching"></a> [caching](#input_caching)                                                    | Disk caching policy controlled by VM. Will be used when attached to the VM defined by managed_by                                                                 | `string` | `"read_write"`                                    |    no    |
 
 ## Azure VM Exposed Inputs
 
-| Name                                                                                                                                                  | Description                                                                                                                                                                                                                                             | Type       | Default                                     | Required |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|---------------------------------------------|:--------:|
-| <a name="input_admin_password0"></a> [admin\_password](#input\_admin\_password0)                                                                      | The Password which should be used for the local-administrator on this virtual machine                                                                                                                                                                   | `string`   | `"Password@123"`                            |    no    |
-| <a name="input_azurerm_resource_group_name0"></a> [azurerm\_resource\_group\_name](#input\_azurerm\_resource\_group\_name0)                           | Name of the resource group to be imported                                                                                                                                                                                                               | `string`   | `rg-intel-<xxxxxx>`                         |    no    |
-| <a name="input_azurerm_subnet_name0"></a> [azurerm\_subnet\_name](#input\_azurerm\_subnet\_name0)                                                     | The name of the preconfigured subnet                                                                                                                                                                                                                    | `string`   | `default`                                   |    no    |
-| <a name="input_azurerm_virtual_network_name0"></a> [azurerm\_virtual\_network\_name](#input\_azurerm\_virtual\_network\_name0)                        | Name of the preconfigured virtual network                                                                                                                                                                                                               | `string`   | `vnet1`                                     |    no    |
-| <a name="input_virtual_network_resource_group_name0"></a> [virtual\_network\_resource\_group\_name](#input\_virtual\_network\_resource\_group\_name0) | Name of the resource group of the virtual network                                                                                                                                                                                                       | `string`   | `rg-intel-<xxxxxx>`                         |    no    |
-| <a name="input_source_image_reference_offer0"></a> [source\_image\_reference\_offer](#input\_source\_image\_reference\_offer0)                        | Specifies the offer of the image used to create the virtual machine                                                                                                                                                                                     | `string`   | `"RHEL"`                                    |    no    |
-| <a name="input_source_image_reference_publisher0"></a> [source\_image\_reference\_publisher](#input\_source\_image\_reference\_publisher0)            | Specifies the publisher of the image used to create the virtual machine                                                                                                                                                                                 | `string`   | `"RedHat"`                                  |    no    |
-| <a name="input_source_image_reference_sku0"></a> [source\_image\_reference\_sku](#input\_source\_image\_reference\_sku0)                              | Specifies the SKU of the image used to create the virtual machine                                                                                                                                                                                       | `string`   | `"8-LVM-gen2"`                              |    no    |
-| <a name="input_source_image_reference_version0"></a> [source\_image\_reference\_version](#input\_source\_image\_reference\_version0)                  | Specifies the version of the image used to create the virtual machine                                                                                                                                                                                   | `string`   | `"latest"`                                  |    no    |
-| <a name="input_vm_tags"></a> [vm_tags](#input\_vm_tags)                                                                                               | A mapping of tags to assign to the resource                                                                                                                                                                                                             | `map(any)` | `{"owner":"user@company.com","duration":1}` |    no    |
+| Name                                                                                                                                                  | Description                                                                           | Type       | Default                                     | Required |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|------------|---------------------------------------------|:--------:|
+| <a name="input_admin_password0"></a> [admin\_password](#input\_admin\_password0)                                                                      | The Password which should be used for the local-administrator on this virtual machine | `string`   | `"Password@123"`                            |    no    |
+| <a name="input_azurerm_resource_group_name0"></a> [azurerm\_resource\_group\_name](#input\_azurerm\_resource\_group\_name0)                           | Name of the resource group to be imported                                             | `string`   | `rg-intel-<xxxxxx>`                         |    no    |
+| <a name="input_azurerm_subnet_name0"></a> [azurerm\_subnet\_name](#input\_azurerm\_subnet\_name0)                                                     | The name of the preconfigured subnet                                                  | `string`   | `default`                                   |    no    |
+| <a name="input_azurerm_virtual_network_name0"></a> [azurerm\_virtual\_network\_name](#input\_azurerm\_virtual\_network\_name0)                        | Name of the preconfigured virtual network                                             | `string`   | `vnet1`                                     |    no    |
+| <a name="input_virtual_network_resource_group_name0"></a> [virtual\_network\_resource\_group\_name](#input\_virtual\_network\_resource\_group\_name0) | Name of the resource group of the virtual network                                     | `string`   | `rg-intel-<xxxxxx>`                         |    no    |
+| <a name="input_source_image_reference_offer0"></a> [source\_image\_reference\_offer](#input\_source\_image\_reference\_offer0)                        | Specifies the offer of the image used to create the virtual machine                   | `string`   | `"RHEL"`                                    |    no    |
+| <a name="input_source_image_reference_publisher0"></a> [source\_image\_reference\_publisher](#input\_source\_image\_reference\_publisher0)            | Specifies the publisher of the image used to create the virtual machine               | `string`   | `"RedHat"`                                  |    no    |
+| <a name="input_source_image_reference_sku0"></a> [source\_image\_reference\_sku](#input\_source\_image\_reference\_sku0)                              | Specifies the SKU of the image used to create the virtual machine                     | `string`   | `"8-LVM-gen2"`                              |    no    |
+| <a name="input_source_image_reference_version0"></a> [source\_image\_reference\_version](#input\_source\_image\_reference\_version0)                  | Specifies the version of the image used to create the virtual machine                 | `string`   | `"latest"`                                  |    no    |
+| <a name="input_virtual_machine_size0"></a> [virtual\_machine\_size](#input\_virtual\_machine\_size0)                                                  | The SKU that will be configured for the provisioned virtual machine                   | `string`   | `"Standard_D2s_v5"`                         |    no    |
+| <a name="input_vm_tags"></a> [vm_tags](#input\_vm_tags)                                                                                               | A mapping of tags to assign to the resource                                           | `map(any)` | `{"owner":"user@company.com","duration":1}` |    no    |
 
 
 ## VM Terraform Extended Inputs
@@ -157,10 +163,10 @@ ansible-playbook intel_azure_rhel_vm_multi_disks.yml
 
 roles/azure_rhel_vm_multi_disks/vars/main.yml
 ```yaml
-disk_size_gb: 8
+vm_name: "new-demo"
 ```
 
-roles/azure_rhel_vm_multi_disks/tasks/vm.yml
+roles/azure_rhel_vm_multi_disks/tasks/rhel_vm.yml
 ```yaml
 ---
 - name: Azure rhel VM creation
@@ -181,22 +187,22 @@ roles/azure_rhel_vm_multi_disks/tasks/vm.yml
       source_image_reference_version: '{{ source_image_reference_version }}'
       tags: '{{ vm_tags }}'
       virtual_machine_size: '{{ virtual_machine_size }}'
+      vm_name: '{{ vm_name }}'
   register: rhel_vm_output
 ```
 
-Use `disk_size_gb` in playbook
+Use `vm_name` in playbook
 ```yaml
 ---
 - name: Run azure_rhel_vm_multi_disks role
   hosts: localhost
   tasks:
-    - name: Running a role Azure rhel vm multi disks
+    - name: Running a role Azure linux vm multi disks
       ansible.builtin.import_role:
         name: azure_rhel_vm_multi_disks
       vars:
         rhel_vm_state: absent
-        rhel_vm_disk_state: absent
-        virtual_machine_size: "Standard_D2s_v3"
+        vm_name: '<vm_name>'
 ```
 
 ## Inputs
