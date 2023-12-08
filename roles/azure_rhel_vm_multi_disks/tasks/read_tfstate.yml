@@ -1,0 +1,23 @@
+- name: Read terraform output
+  command: chdir='{{ azure_vm_tf_module_download_path }}' terraform output -json
+  register: rhel_vm_output
+
+- debug:
+    var: rhel_vm_output
+
+- set_fact:
+    rhel_vm_output: "{{ rhel_vm_output.stdout }}"
+
+- debug:
+    var: rhel_vm_output
+
+- block:
+    - name: "Checking resource for deletion"
+      debug:
+        msg: "Terraform cannot delete the resource because it is not found in the state file. Manual intervention is required."
+    - meta: end_play
+  when: rhel_vm_state == 'absent' and rhel_vm_output | length == 0
+
+- set_fact:
+    vm_name: "{{ rhel_vm_output.name.value }}"
+  when: rhel_vm_output | length > 0
