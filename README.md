@@ -33,9 +33,63 @@ For this module, There are 3 playbooks, Where
 2. Playbook **intel_azure_rhel_vm_multi_disks.yml** - It executes role called [azure_rhel_vm_multi_disks](#azure_rhel_vm_multi_disks)
 3. Playbook **intel_azure_rhel_vm_spot_vm.yml** - It executes role called [azure_rhel_vm_spot_vm](#azure_rhel_vm_spot_vm)
 
-## TODO 
 ```bash
-## TODO ## TODO ## TODO ## TODO ## TODO ## TODO ## TODO ## TODO ## TODO ## TODO 
+.
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── galaxy.yml
+├── playbooks
+│   ├── intel_azure_linux_vm.yml
+│   ├── intel_azure_rhel_vm_multi_disks.yml
+│   └── intel_azure_rhel_vm_spot_vm.yml
+├── README.md
+├── requirements.txt
+├── requirements.yml
+├── roles
+│   ├── azure_rhel_vm_multi_disks
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   ├── files
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── meta
+│   │   │   └── main.yml
+│   │   ├── README.md
+│   │   ├── tasks
+│   │   │   ├── download_tf_module.yml
+│   │   │   ├── main.yml
+│   │   │   ├── managed_disk.yml
+│   │   │   ├── output.yml
+│   │   │   ├── read_tfstate.yml
+│   │   │   └── vm.yml
+│   │   ├── templates
+│   │   ├── tests
+│   │   │   ├── inventory
+│   │   │   └── test.yml
+│   │   └── vars
+│   │       └── main.yml
+│   └── azure_rhel_vm_spot_vm
+│       ├── defaults
+│       │   └── main.yml
+│       ├── files
+│       ├── handlers
+│       │   └── main.yml
+│       ├── meta
+│       │   └── main.yml
+│       ├── README.md
+│       ├── tasks
+│       │   ├── download_tf_module.yml
+│       │   ├── main.yml
+│       │   ├── output.yml
+│       │   └── rhel_vm.yml
+│       ├── templates
+│       ├── tests
+│       │   ├── inventory
+│       │   └── test.yml
+│       └── vars
+│           └── main.yml
+└── security.md
+
 ```
 
 Requirements
