@@ -92,26 +92,11 @@ For this module, There are 3 playbooks, Where
 
 ```
 
-Requirements
-------------
-| Name                                                                               | Version    |
-|------------------------------------------------------------------------------------|------------|
-| <a name="requirement_terraform"></a> [Terraform](#requirement\_terraform)          | =1.5.7     |
-| <a name="requirement_azure_cli"></a> [Azure CLI](#requirement\_azure_cli)   | ~> 2.54.0 |
-| <a name="requirement_ansible_core"></a> [Ansible Core](#requirement\_ansible\_core) | ~>2.14.2   |
-| <a name="requirement_ansible"></a> [Ansible](#requirement\_ansible)                | ~>7.2.0-1  |
-
-
-Note:
-1. Install requirements using `requirements.txt` and `requirements.yml`, Use below command:
-    ```bash
-    pip3 install -r requirements.txt
-    ansible-galaxy install -r requirements.yml
-    ```
-2. Above role requires `Terraform` as we are executing terraform module [terraform-intel-azure-linux-vm](<https://github.com/intel/terraform-intel-azure-linux-vm>) using Ansible module called [community.general.terraform](<https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html>)
+## Authenticate Azure
+1. Download and Install Azure CLI: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=dnf
+2. Authenticate Azure CLI: https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az-login
 
 ## Installation of collection
-
 ### Below are ways to install and use it:
 
 1. **Case 1:-** When user's needs can be met with the default configuration, and they want to install a collection 
@@ -136,10 +121,22 @@ Note:
        cp -r role/azure_rhel_vm_multi_disks /<your project path>/
        ```
 
-## Authenticate Azure
-1. Download and Install Azure CLI: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=dnf
-2. Authenticate Azure CLI: https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az-login
+Requirements
+------------
+| Name                                                                               | Version    |
+|------------------------------------------------------------------------------------|------------|
+| <a name="requirement_terraform"></a> [Terraform](#requirement\_terraform)          | =1.5.7     |
+| <a name="requirement_azure_cli"></a> [Azure CLI](#requirement\_azure_cli)   | ~> 2.54.0 |
+| <a name="requirement_ansible_core"></a> [Ansible Core](#requirement\_ansible\_core) | ~>2.14.2   |
+| <a name="requirement_ansible"></a> [Ansible](#requirement\_ansible)                | ~>7.2.0-1  |
 
+Note:
+1. Install requirements using `requirements.txt` and `requirements.yml`, Use below command:
+    ```bash
+    pip3 install -r requirements.txt
+    ansible-galaxy install -r requirements.yml
+    ```
+2. Above role requires `Terraform` as we are executing terraform module [terraform-intel-azure-linux-vm](<https://github.com/intel/terraform-intel-azure-linux-vm>) using Ansible module called [community.general.terraform](<https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html>)
 
 ## Usage
 Use [playbook](playbooks/intel_azure_linux_vm.yml) to execute Terraform module [terraform-intel-azure-linux-vm](<https://github.com/intel/terraform-intel-azure-linux-vm>) using Ansible module [community.general.terraform](<https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html>) as below
