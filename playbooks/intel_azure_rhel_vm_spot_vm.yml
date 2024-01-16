@@ -1,0 +1,9 @@
+---
+- name: Run azure_rhel_vm_spot_vm role
+  hosts: localhost
+  tasks:
+    - name: Running a role Azure rhel vm spot vm
+      ansible.builtin.import_role:
+        name: azure_rhel_vm_spot_vm
+      vars:
+        rhel_vm_state: present

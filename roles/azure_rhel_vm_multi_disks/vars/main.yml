@@ -1,0 +1,33 @@
+---
+# vars file for azure_rhel_vm_multi_disks
+#terraform path
+azure_vm_tf_module_download_path: '/home/{{ansible_env.USER}}/{{role_name}}/terraform/az_vm/'
+ansible_python_interpreter: /usr/bin/python3
+
+#manageddisk.yml
+disk_name: "managed_disk_name"
+resource_group_name: "rg-intel-29112023"
+storage_account_type: "Standard_LRS"
+location: "eastus"
+create_option: "empty"
+disk_size_gb: "8"
+disk_tags: { "owner": "user@company.com", "duration": "1"}
+lun: 10  
+caching: "read_write"
+
+
+# VM
+rhel_vm_state: present
+azurerm_resource_group_name: "rg-intel-29112023"
+azurerm_virtual_network_name: "vnet1"
+virtual_network_resource_group_name: "rg-intel-29112023"
+azurerm_subnet_name: "default"
+admin_password: "Password@123"
+source_image_reference_offer: "RHEL"
+source_image_reference_sku: "8-LVM-gen2"
+source_image_reference_publisher: "RedHat"
+source_image_reference_version: "latest"
+vm_tags:
+  owner: user@company.com
+  duration: 1
+virtual_machine_size: "Standard_D2s_v5"

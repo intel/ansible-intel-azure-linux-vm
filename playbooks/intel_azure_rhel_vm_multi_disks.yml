@@ -1,0 +1,11 @@
+---
+- name: Run azure_rhel_vm_multi_disks role
+  hosts: localhost
+  tasks:
+    - name: Running a role Azure linux vm multi disks
+      ansible.builtin.import_role:
+        name: azure_rhel_vm_multi_disks
+      vars:
+        rhel_vm_state: present
+        rhel_vm_disk_state: present
+        virtual_machine_size: "Standard_D2s_v3"

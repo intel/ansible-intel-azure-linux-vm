@@ -1,0 +1,15 @@
+---
+# tasks file for azure_rhel_vm_spot_vm
+- name: Download module
+  ansible.builtin.include_tasks:
+    file: download_tf_module.yml
+  when: rhel_vm_state == "present"
+
+- name: Rhel VM configure
+  ansible.builtin.include_tasks:
+    file: rhel_vm.yml
+ 
+- name: Output
+  ansible.builtin.include_tasks:
+    file: output.yml
+  when: rhel_vm_state == "present"

@@ -1,0 +1,24 @@
+---
+# vars file for azure_rhel_vm_spot_vm
+# optional
+azure_vm_tf_module_download_path: '/home/{{ansible_env.USER}}/{{role_name}}/terraform/azure_rhel_vm_spot_vm/'
+ansible_python_interpreter: /usr/bin/python3
+
+
+# Rhel VM
+rhel_vm_state: present
+azurerm_resource_group_name: "rg-intel-<xxxxxx>"
+azurerm_virtual_network_name: "vnet1"
+virtual_network_resource_group_name: "rg-intel-<xxxxxx>"
+azurerm_subnet_name: "default"
+admin_password: "Password@123"
+source_image_reference_offer: "RHEL"
+source_image_reference_sku: "8-LVM-gen2"
+source_image_reference_publisher: "RedHat"
+source_image_reference_version: "latest"
+priority: "Spot"
+max_bid_price: 0.0874
+eviction_policy: "Deallocate"
+vm_tags:
+  owner: user@company.com
+  duration: 1

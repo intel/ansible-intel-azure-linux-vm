@@ -1,0 +1,37 @@
+- hosts: localhost
+  vars:
+    terraform_source: https://github.com/intel/terraform-intel-azure-linux-vm.git
+  tasks:
+    - set_fact:
+        terraform_module_download_path: '/home/{{ansible_env.USER}}/terraform/main/intel_azure_linux_vm/'
+
+    - name: Clone a github repository
+      git:
+        repo: '{{ terraform_source }}'
+        dest: '{{ terraform_module_download_path }}'
+        clone: yes
+        update: yes
+        version: main
+
+    - name: Azure linux vm
+      community.general.terraform:
+        project_path: '{{ terraform_module_download_path }}'
+        state: present
+        force_init: true
+        complex_vars: true
+        # for additional variables
+        # https://github.com/intel/terraform-intel-azure-linux-vm/blob/main/variables.tf
+        variables:
+          azurerm_resource_group_name: "rg-intel-29112023"
+          azurerm_virtual_network_name: "vnet1"
+          virtual_network_resource_group_name: "rg-intel-29112023"
+          virtual_machine_size: "Standard_D2s_v3"
+          azurerm_subnet_name: "default"
+          admin_password: "Password@123"
+          tags:
+            owner: user@company.com
+            duration: 1
+      register: vm_output
+
+    - debug:
+        var: vm_output

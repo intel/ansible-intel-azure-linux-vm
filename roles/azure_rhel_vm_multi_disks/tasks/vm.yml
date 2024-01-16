@@ -1,0 +1,26 @@
+---
+- name: Azure rhel VM creation
+  community.general.terraform:
+    project_path: '{{ azure_vm_tf_module_download_path }}'
+    state: '{{ rhel_vm_state }}'
+    force_init: true 
+    complex_vars: true 
+    variables:
+      azurerm_resource_group_name: '{{ azurerm_resource_group_name }}'
+      azurerm_virtual_network_name: '{{ azurerm_virtual_network_name }}'
+      virtual_network_resource_group_name: '{{ virtual_network_resource_group_name }}'
+      azurerm_subnet_name: '{{ azurerm_subnet_name }}'
+      admin_password: '{{ admin_password }}'
+      source_image_reference_offer: '{{ source_image_reference_offer }}'
+      source_image_reference_sku: '{{ source_image_reference_sku }}'
+      source_image_reference_publisher: '{{ source_image_reference_publisher }}'
+      source_image_reference_version: '{{ source_image_reference_version }}'
+      tags: '{{ vm_tags }}'
+      virtual_machine_size: '{{ virtual_machine_size }}'
+  register: rhel_vm_output
+- debug:
+    var: rhel_vm_output
+- set_fact:
+    vm_name: '{{ rhel_vm_output.outputs.name.value }}'
+  when: rhel_vm_output.outputs | length > 0
+
