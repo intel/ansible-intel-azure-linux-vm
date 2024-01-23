@@ -7,3 +7,6 @@
         name: azure_rhel_vm_spot_vm
       vars:
         rhel_vm_state: present
+        azurerm_resource_group_name: "<azurerm_resource_group_name>"
+        azurerm_virtual_network_name: "vnet1"
+        virtual_network_resource_group_name: "<virtual_network_resource_group_name>"

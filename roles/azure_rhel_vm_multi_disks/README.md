@@ -72,6 +72,8 @@ Use playbook to run azure_rhel_vm_multi_disks as below
         name: azure_rhel_vm_multi_disks
       vars:
         rhel_vm_state: present
+        azurerm_resource_group_name: "<azurerm_resource_group_name>"
+        virtual_network_resource_group_name: "<virtual_network_resource_group_name>"
 ```
 Use below Command:
 ```commandline
@@ -90,6 +92,8 @@ ansible-playbook intel_azure_rhel_vm_multi_disks.yml
         name: azure_rhel_vm_multi_disks
       vars:
         rhel_vm_state: present
+        azurerm_resource_group_name: "<azurerm_resource_group_name>"
+        virtual_network_resource_group_name: "<virtual_network_resource_group_name>"
 ```
 Use below Command:
 ```commandline
@@ -107,6 +111,8 @@ ansible-playbook intel_azure_rhel_vm_multi_disks.yml
         name: azure_rhel_vm_multi_disks
       vars:
         rhel_vm_state: absent
+        azurerm_resource_group_name: "<azurerm_resource_group_name>"
+        virtual_network_resource_group_name: "<virtual_network_resource_group_name>"
 ```
 Use below Command:
 ```commandline
