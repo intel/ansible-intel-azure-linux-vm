@@ -22,9 +22,10 @@
         # for additional variables
         # https://github.com/intel/terraform-intel-azure-linux-vm/blob/main/variables.tf
         variables:
-          azurerm_resource_group_name: "rg-intel-29112023"
-          azurerm_virtual_network_name: "vnet1"
-          virtual_network_resource_group_name: "rg-intel-29112023"
+          #Set the variables below to match your Azure resource group, network, and VM size
+          azurerm_resource_group_name: "terraform-testing-rg"
+          azurerm_virtual_network_name: "vm-vnet1"
+          virtual_network_resource_group_name: "terraform-testing-rg"
           virtual_machine_size: "Standard_D2s_v3"
           azurerm_subnet_name: "default"
           admin_password: "Password@123"
