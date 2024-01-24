@@ -8,6 +8,10 @@
       vars:
         rhel_vm_state: present
         rhel_vm_disk_state: present
-        azurerm_resource_group_name: "<azurerm_resource_group_name>"
-        azurerm_virtual_network_name: "vnet1"
-        virtual_network_resource_group_name: "<virtual_network_resource_group_name>"
+        # Set your Azure resource group and virtual networks below.
+        # azurerm_resource_group_name: "<azurerm_resource_group_name>"
+        # azurerm_virtual_network_name: "vnet1"
+        # virtual_network_resource_group_name: "<virtual_network_resource_group_name>"
+        azurerm_resource_group_name: "terraform-testing-rg"
+        azurerm_virtual_network_name: "vm-vnet1"
+        virtual_network_resource_group_name: "terraform-testing-rg"
