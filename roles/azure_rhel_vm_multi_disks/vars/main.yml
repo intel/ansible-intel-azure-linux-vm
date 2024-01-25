@@ -6,7 +6,7 @@ ansible_python_interpreter: /usr/bin/python3
 
 #manageddisk.yml
 disk_name: "managed_disk_name"
-resource_group_name: "rg-intel-29112023"
+disk_resource_group_name: "rg-intel-<xxxxx>"
 storage_account_type: "Standard_LRS"
 location: "eastus"
 create_option: "empty"
