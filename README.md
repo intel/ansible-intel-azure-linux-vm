@@ -29,8 +29,11 @@ For this module, There are 2 roles.
          Playbooks can also include variables, which can be used to store data that is used by the tasks. This makes it easy to reuse playbooks for different environments and configurations.
          for this module. 
 For this module, There are 3 playbooks, Where
+
 1. Playbook **intel_azure_linux_vm.yml** - Used to creates an Azure Virtual Machine on Intel Icelake CPU on Linux Operating System, it uses Terraform module **terraform-intel-azure-linux-vm** and being called by Ansible module community.general.terraform
+
 2. Playbook **intel_azure_rhel_vm_multi_disks.yml** - It executes role called [azure_rhel_vm_multi_disks](#azure_rhel_vm_multi_disks)
+
 3. Playbook **intel_azure_rhel_vm_spot_vm.yml** - It executes role called [azure_rhel_vm_spot_vm](#azure_rhel_vm_spot_vm)
 
 ```bash
