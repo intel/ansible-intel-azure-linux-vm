@@ -12,6 +12,7 @@ This example creates an Azure Virtual Machine on Intel Icelake CPU on Linux Oper
 
 As you configure your application's environment, choose the configurations for your infrastructure that matches your application's requirements. In this example, the virtual machine is using a preconfigured network interface, subnet, and resource group and has an additional option to enable boot diagnostics. The tags Name, Owner and Duration are added to the virtual machine when it is created.
 
+
 ### Explained Ansible Azure VM - Linux VM collection
 This collection included 2 roles and 3 playbooks.
 
